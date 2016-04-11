@@ -1,5 +1,5 @@
 ==============================================
-system_fail Communication Library for Topology
+system_control Communication Library for Topology
 ==============================================
 
 Check if switch has system services that failed
@@ -8,7 +8,7 @@ Check if switch has system services that failed
 Documentation
 =============
 
-    https://github.com/arman-kapbasov/topology_lib_system_fail.git/tree/master/doc
+    https://github.com/HPENetworking/topology_lib_system_conotrol.git/tree/master/doc
 
 
 License
