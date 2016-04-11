@@ -8,7 +8,7 @@ Check if switch has system services that failed
 Documentation
 =============
 
-    https://github.com/HPENetworking/topology_lib_system_conotrol.git/tree/master/doc
+    https://github.com/HPENetworking/topology_lib_system_control.git/tree/master/doc
 
 
 License
