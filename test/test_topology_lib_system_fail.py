@@ -16,7 +16,7 @@
 # under the License.
 
 """
-Test suite for module topology_lib_system_fail.
+Test suite for module topology_lib_system_control.
 """
 
 from __future__ import unicode_literals, absolute_import

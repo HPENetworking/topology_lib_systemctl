@@ -16,7 +16,7 @@
 # under the License.
 
 """
-topology_lib_system_fail communication library implementation.
+topology_lib_system_control communication library implementation.
 """
 
 from __future__ import unicode_literals, absolute_import
@@ -25,18 +25,19 @@ from __future__ import print_function, division
 # Add your library functions here.
 
 
-def systemfail(enode):
+def check_system_services(enode):
     #
     # returns None if no failed system services
     #
     # otherwise returns the list of the failed services
     #
-    cmd = 'systemctl --state=failed | grep failed'
+    cmd = ("systemctl list-units  -all --state=failed | grep failed | " +
+        "awk '{print $2;}'")
     retval = enode(cmd, shell='bash')
     if retval is "":
         return None
     else:
         return retval
 __all__ = [
-    'systemfail'
+    'check_system_services'
 ]

@@ -1,11 +1,11 @@
 {
-    "library_name": "topology_lib_system_fail",
+    "library_name": "topology_lib_system_control",
     "author": "Hewlett Packard Enterprise Development LP",
     "email": "arman.kapbasov@hpe.com",
-    "repo_url": "https://github.com/arman-kapbasov/topology_lib_system_fail.git",
-    "doc_url": "https://github.com/arman-kapbasov/topology_lib_system_fail.git/tree/master/doc",
-    "project_name": "system_fail Communication Library for Topology",
-    "short_description": "Check if switch has system services that failed",
+    "repo_url": "https://github.com/HPENetworking/topology_lib_system_control",
+    "doc_url": "https://github.com/HPENetworking/topology_lib_system_control/tree/master/doc",
+    "project_name": "system_control Communication Library for Topology",
+    "short_description": "System control library",
     "year": "2016",
     "version": "0.1.0"
 }

@@ -58,8 +58,8 @@ def find_requirements(filename):
 
 
 setup(
-    name='topology_lib_system_fail',
-    version=find_version('lib/topology_lib_system_fail/__init__.py'),
+    name='topology_lib_system_control',
+    version=find_version('lib/topology_lib_system_control/__init__.py'),
     package_dir={'': 'lib'},
     packages=find_packages('lib'),
 
@@ -70,11 +70,11 @@ setup(
     author='Hewlett Packard Enterprise Development LP',
     author_email='arman.kapbasov@hpe.com',
     description=(
-        'Check if switch has system services that failed'
+        'System control library'
     ),
     long_description=read('README.rst'),
-    url='https://github.com/arman-kapbasov/topology_lib_system_fail.git/tree/master/doc',
-    keywords='topology_lib_system_fail',
+    url='https://github.com/HPENetworking/topology_lib_system_control/tree/master/doc',
+    keywords='topology_lib_system_control',
 
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -91,7 +91,7 @@ setup(
     # Entry points
     entry_points={
         'topology_library_10': [
-            'system_fail = topology_lib_system_fail.library'
+            'system_control = topology_lib_system_control.library'
         ]
     }
 )

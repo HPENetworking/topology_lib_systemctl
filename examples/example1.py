@@ -16,13 +16,13 @@
 # under the License.
 
 """
-topology_lib_system_fail example 1.
+topology_lib_system_control example 1.
 """
 
 from __future__ import unicode_literals, absolute_import
 from __future__ import print_function, division
 
-import topology_lib_system_fail  # noqa
+import topology_lib_system_control  # noqa
 
 TOPOLOGY = """
 # |        |
@@ -45,7 +45,7 @@ def test_systemfail(topology):
 
     assert ops1 is not None
 
-    if ops1.libs.system_fail.systemfail():
+    if ops1.libs.system_control.check_system_services():
         print("Switch has failed services..")
         raise Exception("Exiting")
     else:

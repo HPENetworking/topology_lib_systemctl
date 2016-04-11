@@ -16,7 +16,7 @@
 # under the License.
 
 """
-topology_lib_system_fail module entry point.
+topology_lib_system_control module entry point.
 """
 
 from __future__ import unicode_literals, absolute_import
