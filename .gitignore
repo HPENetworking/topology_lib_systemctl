@@ -9,7 +9,7 @@ build/*
 
 # Sphinx
 doc/_build/*
-doc/topology_lib_system_fail/*
+doc/topology_lib_system_control/*
 
 # Tox
 .tox/*
