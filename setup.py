@@ -73,7 +73,8 @@ setup(
         'System control library'
     ),
     long_description=read('README.rst'),
-    url='https://github.com/HPENetworking/topology_lib_system_control/tree/master/doc',
+    url=('https://github.com/HPENetworking/topology_lib_system_control/tree\
+         /master/doc'),
     keywords='topology_lib_system_control',
 
     classifiers=[
