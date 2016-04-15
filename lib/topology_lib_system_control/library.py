@@ -66,6 +66,41 @@ def get_memory_usage(enode):
     return mem_info
 
 
+def memory_leak_check(enode, init_val, final_val, leakage_threshold):
+
+    """
+    This function calculates the memory usage for initial and final instances
+    and compares the difference with the leakage threshold to generate a
+    verdict to declare that there is a leakage or not.
+
+    :param topology.platforms.base.BaseNode enode: Engine node to communicate
+     with.
+    :init_val is the memory usage dictionary value which is returned from
+     the routine get_memory_usage() at some time of instance, say before the
+     execution of some test.
+    :final_val is the memory usage dictionary value which is returned from
+     the routine get_memory_usage() at some other time of instance say after
+     the test of execution.
+    :leakage_threshold is the allowed memory usage difference from init to
+     final and beyond which it can be considered as memory leakage for the
+     result verdict.
+    :returns 1 for leakage detection and 0 for no leakage
+    """
+    verdict = 0
+    assert init_val
+    assert final_val
+    init_used_mem = int(init_val["memTotal"]) - (int(init_val["memFree"]) +
+                                                 int(init_val["cached"]))
+
+    final_used_mem = int(final_val["memTotal"]) - (int(final_val["memFree"]) +
+                                                   int(final_val["cached"]))
+    if (abs(final_used_mem - init_used_mem) <= leakage_threshold):
+        verdict = 0
+    else:
+        verdict = 1
+    return verdict
+
+
 def get_cpu_usage(enode):
 
     """
@@ -131,7 +166,7 @@ def cpu_unload(enode, processid_list):
     """
     assert len(processid_list) > 0, "processes list is empty"
     for process_id in processid_list:
-        command = "kill -9 "+process_id
+        command = "kill "+process_id
         enode(command, shell="bash")
     command = "\n"
     enode(command, shell="bash")
@@ -139,6 +174,7 @@ def cpu_unload(enode, processid_list):
 __all__ = [
     'check_system_services',
     'get_memory_usage',
+    'memory_leak_check',
     'get_cpu_usage',
     'cpu_load',
     'cpu_unload'
