@@ -2,6 +2,7 @@
 #
 # system_control Communication Library for Topology documentation build
 # configuration file.
+# systemctl Communication Library for Topology documentation build configuration file.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -15,7 +16,7 @@
 import os
 from os.path import join, dirname, abspath
 
-from topology_lib_system_control import __version__
+from topology_lib_systemctl import __version__
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -54,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'system_control Communication Library for Topology'
+project = 'systemctl Communication Library for Topology'
 copyright = '2016, Hewlett Packard Enterprise Development LP'
 author = 'Hewlett Packard Enterprise Development LP'
 
@@ -208,7 +209,7 @@ html_last_updated_fmt = '%Y-%m-%d'
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'topology_lib_system_controldoc'
+htmlhelp_basename = 'topology_lib_systemctldoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -231,8 +232,8 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (
-        'index', 'topology_lib_system_control.tex',
-        'system_control Communication Library for Topology Documentation',
+        'index', 'topology_lib_systemctl.tex',
+        'systemctl Communication Library for Topology Documentation',
         'Hewlett Packard Enterprise Development LP', 'manual'
     ),
 ]
@@ -265,8 +266,8 @@ latex_documents = [
 man_pages = [
     (
         'index',
-        'topology_lib_system_control',
-        'system_control Communication Library for Topology Documentation',
+        'topology_lib_systemctl',
+        'systemctl Communication Library for Topology Documentation',
         [author], 1
     ),
 ]
@@ -283,12 +284,12 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        'topology_lib_system_control',
-        'system_control Communication Library for Topology Documentation',
+        'topology_lib_systemctl',
+        'systemctl Communication Library for Topology Documentation',
         author,
-        'topology_lib_system_control',
+        'topology_lib_systemctl',
         (
-            'System control library'
+            'Library for systemctl commands'
         ),
         'Miscellaneous'
     ),
@@ -313,7 +314,7 @@ def setup(app):
 
 # autoapi configuration
 autoapi_modules = {
-    'topology_lib_system_control': None
+    'topology_lib_systemctl': None
 }
 
 # Configure PlantUML

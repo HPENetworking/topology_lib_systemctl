@@ -58,8 +58,8 @@ def find_requirements(filename):
 
 
 setup(
-    name='topology_lib_system_control',
-    version=find_version('lib/topology_lib_system_control/__init__.py'),
+    name='topology_lib_systemctl',
+    version=find_version('lib/topology_lib_systemctl/__init__.py'),
     package_dir={'': 'lib'},
     packages=find_packages('lib'),
 
@@ -70,14 +70,15 @@ setup(
     author='Hewlett Packard Enterprise Development LP',
     author_email='arman.kapbasov@hpe.com',
     description=(
-        'System control library'
+        'Library for systemctl commands'
     ),
     long_description=read('README.rst'),
     url=('https://github.com/HPENetworking/topology_lib_system_control/tree\
          /master/doc'),
     keywords='topology_lib_system_control',
-
-    classifiers=[
+    keywords='topology_lib_systemctl',
+    
+	classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
@@ -92,7 +93,7 @@ setup(
     # Entry points
     entry_points={
         'topology_library_10': [
-            'system_control = topology_lib_system_control.library'
+            'systemctl = topology_lib_systemctl.library'
         ]
     }
 )
