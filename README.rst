@@ -1,14 +1,14 @@
-==============================================
-system_control Communication Library for Topology
-==============================================
+============================================
+systemctl Communication Library for Topology
+============================================
 
-Check if switch has system services that failed
+Library for systemctl commands
 
 
 Documentation
 =============
 
-    https://github.com/HPENetworking/topology_lib_system_control.git/tree/master/doc
+    https://github.com/HPENetworking/topology_lib_systemctl/tree/master/doc
 
 
 License

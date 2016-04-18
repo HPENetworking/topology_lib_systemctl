@@ -16,12 +16,17 @@
 # under the License.
 
 """
-topology_lib_system_control module entry point.
+Test suite for module topology_lib_systemctl.
 """
 
 from __future__ import unicode_literals, absolute_import
 from __future__ import print_function, division
 
-__author__ = 'Hewlett Packard Enterprise Development LP'
-__email__ = 'arman.kapbasov@hpe.com'
-__version__ = '0.1.0'
+# Add your test cases here.
+
+
+def test_your_test_case():
+    """
+    Document your test case here.
+    """
+    pass

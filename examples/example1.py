@@ -16,37 +16,12 @@
 # under the License.
 
 """
-topology_lib_system_control example 1.
+topology_lib_systemctl example 1.
 """
 
 from __future__ import unicode_literals, absolute_import
 from __future__ import print_function, division
 
-import topology_lib_system_control  # noqa
+import topology_lib_systemctl  # noqa
 
-TOPOLOGY = """
-# |        |
-# |        |
-# |  ops1  |
-# |        |
-# |        |
-
-# Nodes
-[type=openswitch name="OpenSwitch 1"] ops1
-
-# Links
-"""
-
-# Add your library functions here.
-
-
-def test_systemfail(topology):
-    ops1 = topology.get('ops1')
-
-    assert ops1 is not None
-
-    if ops1.libs.system_control.check_system_services():
-        print("Switch has failed services..")
-        raise Exception("Exiting")
-    else:
-        print("All good!")
+# Use topology_lib_systemctl in this example

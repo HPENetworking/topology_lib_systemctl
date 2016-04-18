@@ -2,30 +2,30 @@
    :hidden:
 
    developer
-   topology_lib_system_fail/topology_lib_system_fail
+   topology_lib_systemctl/topology_lib_systemctl
 
-==============================================
-system_fail Communication Library for Topology
-==============================================
+============================================
+systemctl Communication Library for Topology
+============================================
 
 .. container:: float-right
 
    .. image:: _static/images/logo.png
 
-Check if switch has system services that failed
+Library for systemctl commands
 
 
 Documentation
 =============
 
 - :doc:`Developer Guide. <developer>`
-- :doc:`Internal Documentation Reference. <topology_lib_system_fail/topology_lib_system_fail>`
+- :doc:`Internal Documentation Reference. <topology_lib_systemctl/topology_lib_systemctl>`
 
 
 Development
 ===========
 
-- `Project repository. <https://github.com/arman-kapbasov/topology_lib_system_fail.git>`_
+- `Project repository. <https://github.com/HPENetworking/topology_lib_systemctl>`_
 
 
 License
