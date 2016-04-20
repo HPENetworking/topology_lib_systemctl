@@ -165,6 +165,58 @@ def cpu_unload(enode, processid_list):
     command = "\n"
     enode(command, shell="bash")
 
+
+def list_all_units(enode):
+    '''
+    List all system units
+
+    :rtype: list
+    :return: The list of all system units or None
+    '''
+    cmd = ("systemctl list-units  -all | awk '{print $1 $2;}' | tail -n+2 " +
+        "head -n -7")
+    retval = enode(cmd, shell='bash')
+
+    if retval is "":
+        return None
+    else:
+        return retval.split()
+
+
+def reload_service_units(enode, service):
+    '''
+    Reloads system service units
+
+    :rtype: boolean
+    :return: "True" if succesful,"False" if failed
+    '''
+    cmd_check = "systemctl list-units -all"
+    cmd_restart = ("systemctl restart " + service)
+    retval_check = enode(cmd_check, shell='bash')
+
+    assert service in retval_check
+
+    retval_restart = enode(cmd_restart, shell='bash')
+    print (retval_restart)
+
+
+
+def list_loaded_units(enode):
+    '''
+    List loaded system units
+
+    :rtype: list
+    :return: The list of all loaded units or None
+    '''
+    cmd = ("systemctl list-units  --state=loaded | awk '{print $1 $2;}' | " +
+     "tail -n+2 | head -n -7")
+    retval = enode(cmd, shell='bash')
+
+    if retval is "":
+        return None
+    else:
+        return retval.split()
+
 __all__ = [
     'check_failed_services',
     'get_memory_usage',
