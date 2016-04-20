@@ -188,8 +188,10 @@ def list_all_units(enode):
             ret_list.append(line[0])
         else:
             ret_list.append(line[1])
-
-    return ret_list
+    if len(ret_list) is 0:
+        return None
+    else:
+        return ret_list
 
 
 def reload_service_units(enode, services_list):
