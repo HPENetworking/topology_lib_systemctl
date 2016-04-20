@@ -112,7 +112,7 @@ def get_cpu_usage(enode):
     output = enode("cat /proc/stat", shell="bash")
     assert 'cpu' in output
     buffer1 = output.split('\n')
-    line = buffer[0]
+    line = buffer1[0]
     spl = line.split(" ")
     last_worktime = int(spl[2]) + int(spl[3]) + int(spl[4])
     last_idletime = int(spl[5])
