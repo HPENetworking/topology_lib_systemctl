@@ -200,7 +200,6 @@ def reload_service_units(enode, service):
     print (retval_restart)
 
 
-
 def list_loaded_units(enode):
     '''
     List loaded system units
@@ -223,5 +222,8 @@ __all__ = [
     'memory_leak_check',
     'get_cpu_usage',
     'cpu_load',
-    'cpu_unload'
+    'cpu_unload',
+    'list_all_units',
+    'reload_service_units',
+    'list_loaded_units'
 ]
