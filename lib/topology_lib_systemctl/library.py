@@ -21,7 +21,7 @@ topology_lib_systemctl communication library implementation.
 
 from __future__ import unicode_literals, absolute_import
 from __future__ import print_function, division
-import time
+import time, re
 
 # Add your library functions here.
 
@@ -178,22 +178,22 @@ def list_all_units(enode):
     :rtype: list
     :return: The list of all system units or None
     '''
-    cmd = ("systemctl list-units  -all | tail -n+2 | head -n -7")
+    cmd = ("systemctl list-units  -all | tail -n+2 | head -n -7 | "
+    "awk '{print $1 " " $2;}'")
     retval = enode(cmd, shell='bash')
     retval = retval.split('\n')
 
     print(retval)
     ret_list = []
     for line in retval:
-        line1 = line.split(" ")
-        if "failed" in line or "not-found" in line:
-            ret_list.append(line1[2])
+        if re.search('a-zA-Z]+', line[0]):
+            ret_list.append(line[0])
         else:
-            ret_list.append(line1[0])
+            ret_list.append(line[1])
     if len(ret_list) is 0:
         return None
     else:
-        return ret_list
+        ret_list
 
 
 def reload_service_units(enode, services_list):
