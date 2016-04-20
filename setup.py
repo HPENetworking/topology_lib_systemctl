@@ -77,6 +77,12 @@ setup(
     keywords='topology_lib_systemctl',
 
     classifiers=[
+    url=('https://github.com/HPENetworking/topology_lib_system_control/tree\
+         /master/doc'),
+    keywords='topology_lib_system_control',
+    keywords='topology_lib_systemctl',
+    
+	classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
