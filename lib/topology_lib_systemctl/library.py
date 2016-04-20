@@ -33,9 +33,15 @@ def check_failed_services(enode):
     :rtype: list
     :return: The list of failed services or None
     '''
-    cmd = ("systemctl list-units  -all --state=failed | grep failed | " +
+    cmd = ("systemctl list-units -all --state=failed | grep failed | " +
         "awk '{print $2;}'")
-    retval = enode(cmd, shell='bash')
+    output = enode(cmd, shell='bash')
+    output = output.split('\n')
+
+    retval = []
+    for line in output:
+        if "systemctl list-units" not in line:
+            retval.append(line)
     if retval is "":
         return None
     else:
