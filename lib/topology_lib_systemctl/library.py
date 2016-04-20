@@ -190,13 +190,10 @@ def reload_service_units(enode, service):
     :rtype: boolean
     :return: "True" if succesful,"False" if failed
     '''
-    cmd_check = "systemctl list-units -all"
     cmd_restart = ("systemctl restart " + service)
-    retval_check = enode(cmd_check, shell='bash')
-
-    assert service in retval_check
 
     retval_restart = enode(cmd_restart, shell='bash')
+    assert "Failed" not in retval_restart
     print (retval_restart)
 
 
