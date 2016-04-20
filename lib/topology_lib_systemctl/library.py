@@ -183,13 +183,14 @@ def list_all_units(enode):
     retval = enode(cmd, shell='bash')
     retval = retval.split('\n')
 
-    print(retval)
     ret_list = []
     for line in retval:
-        if re.search('a-zA-Z]+', line[0]):
-            ret_list.append(line[0])
-        else:
-            ret_list.append(line[1])
+        lineS = line.split(" ")
+        if "systemctl list-units" not in line:
+            if re.search('a-zA-Z]+', lineS[0]):
+                ret_list.append(line[0])
+            else:
+                ret_list.append(line[1])
     if len(ret_list) is 0:
         return None
     else:
