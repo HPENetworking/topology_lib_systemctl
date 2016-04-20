@@ -37,7 +37,7 @@ def check_failed_services(enode):
         "awk '{print $2;}'")
     output = enode(cmd, shell='bash')
     output = output.split('\n')
-    print(output)
+
     retval = []
     for line in output:
         if "systemctl list-units" not in line:
@@ -45,7 +45,7 @@ def check_failed_services(enode):
     if retval is "":
         return None
     else:
-        return None
+        return retval
 
 
 def get_memory_usage(enode):
@@ -183,7 +183,6 @@ def list_all_units(enode):
     retval = retval.split('\n')
 
     print(retval)
-
     ret_list = []
     for line in retval:
         if "failed" in line or "not-found" in line:
@@ -193,7 +192,7 @@ def list_all_units(enode):
     if len(ret_list) is 0:
         return None
     else:
-        return ret_list
+        return None
 
 
 def reload_service_units(enode, services_list):
