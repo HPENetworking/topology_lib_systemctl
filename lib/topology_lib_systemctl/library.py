@@ -185,6 +185,7 @@ def list_all_units(enode):
     print(retval)
     ret_list = []
     for line in retval:
+        line = line.split(" ")
         if "failed" in line or "not-found" in line:
             ret_list.append(line[2])
         else:
@@ -192,7 +193,7 @@ def list_all_units(enode):
     if len(ret_list) is 0:
         return None
     else:
-        return None
+        return ret_list
 
 
 def reload_service_units(enode, services_list):
