@@ -37,7 +37,7 @@ def check_failed_services(enode):
         "awk '{print $2;}'")
     output = enode(cmd, shell='bash')
     output = output.split('\n')
-    print output
+    print(output)
     retval = []
     for line in output:
         if "systemctl list-units" not in line:
