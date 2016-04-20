@@ -28,7 +28,7 @@ import time, re
 
 def check_failed_services(enode):
     '''
-    List failed services
+    List the failed services
 
     :rtype: list
     :return: The list of failed services or None
