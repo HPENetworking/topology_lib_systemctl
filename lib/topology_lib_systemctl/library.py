@@ -224,14 +224,24 @@ def list_loaded_units(enode):
     :rtype: list
     :return: The list of all loaded units or None
     '''
-    cmd = ("systemctl list-units  --state=loaded | awk '{print $1 $2;}' | " +
-     "tail -n+2 | head -n -7")
+    cmd = ("systemctl list-units  --state=loaded | tail -n+2 | head -n -7 | "
+    "awk '{print $1, $2;}'")
     retval = enode(cmd, shell='bash')
+    retval = retval.split('\n')
 
-    if retval is "":
+    ret_list = []
+    for line in retval:
+        lineS = line.split(" ")
+        if "systemctl list-units" not in line:
+            if any(c.isalpha() for c in lineS[0]) and any(c.isalpha()
+            for c in lineS[1]):
+                ret_list.append(lineS[0])
+            else:
+                ret_list.append(lineS[1])
+    if len(ret_list) is 0:
         return None
     else:
-        return retval.split()
+        return ret_list
 
 __all__ = [
     'check_failed_services',
