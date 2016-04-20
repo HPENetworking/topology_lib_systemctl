@@ -179,7 +179,7 @@ def list_all_units(enode):
     :return: The list of all system units or None
     '''
     cmd = ("systemctl list-units  -all | tail -n+2 | head -n -7 | "
-    "awk '{print $1 " " $2;}'")
+    "awk '{print $1, $2;}'")
     retval = enode(cmd, shell='bash')
     retval = retval.split('\n')
 
