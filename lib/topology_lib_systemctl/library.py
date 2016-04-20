@@ -187,8 +187,8 @@ def list_all_units(enode):
     for line in retval:
         lineS = line.split(" ")
         if "systemctl list-units" not in line:
-            if re.search('a-zA-Z]+', lineS[0]) and re.search('a-zA-Z]+',
-            lineS[1]):
+            if any(c.isalpha() for c in lineS[0]) and any(c.isalpha()
+            for c in lineS[1]):
                 ret_list.append(lineS[0])
             else:
                 ret_list.append(lineS[1])
