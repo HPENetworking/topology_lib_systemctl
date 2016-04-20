@@ -191,9 +191,9 @@ def list_all_units(enode):
             print("lines 0: " + str(lineS[0]))
             print("lines 1: " + str(lineS[1]))
             if re.search('a-zA-Z]+', lineS[0]):
-                ret_list.append(line[0])
+                ret_list.append(lineS[0])
             else:
-                ret_list.append(line[1])
+                ret_list.append(lineS[1])
     if len(ret_list) is 0:
         return None
     else:
