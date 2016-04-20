@@ -28,6 +28,7 @@ from __future__ import print_function, division
 def check_failed_services(enode):
     '''
     List failed services
+
     :rtype: list
     :return: The list of failed services or None
     '''
@@ -38,6 +39,62 @@ def check_failed_services(enode):
         return None
     else:
         return retval.split()
+
+
+def list_all_units(enode):
+    '''
+    List all system units
+
+    :rtype: list
+    :return: The list of all system units or None
+    '''
+    cmd = ("systemctl list-units  -all | awk '{print $1 $2;}' | tail -n+2 " +
+        "head -n -7")
+    retval = enode(cmd, shell='bash')
+
+    if retval is "":
+        return None
+    else:
+        return retval.split()
+
+
+def reload_service_units(enode, service):
+    '''
+    Reloads system service units
+
+    :rtype: boolean
+    :return: "True" if succesful,"False" if failed
+    '''
+    cmd = ("systemctl list-units  -all | awk '{print $1 $2;}' | tail -n+2 " +
+        "head -n -7")
+    retval = enode(cmd, shell='bash')
+
+    if retval is "":
+        return None
+    else:
+        return retval.split()
+
+
+def list_loaded_units(enode):
+    '''
+    List loaded system units
+
+    :rtype: list
+    :return: The list of all loaded units or None
+    '''
+    cmd = ("systemctl list-units  --state=loaded | awk '{print $1 $2;}' | " +
+     "tail -n+2 | head -n -7")
+    retval = enode(cmd, shell='bash')
+
+
+    if retval is "":
+        return None
+    else:
+        return retval.split()
+
 __all__ = [
-    'check_failed_services'
+    'check_failed_services',
+    'list_all_units',
+    'reload_service_units',
+    'list_loaded_units'
 ]
