@@ -77,8 +77,8 @@ setup(
     keywords='topology_lib_systemctl',
 
     classifiers=[
-    url=('https://github.com/HPENetworking/topology_lib_system_control/tree\
-         /master/doc'),
+    url=('https://github.com/HPENetworking/topology_lib_systemctl/tree\
+ 	/master/doc'),
     keywords='topology_lib_system_control',
     keywords='topology_lib_systemctl',
     
