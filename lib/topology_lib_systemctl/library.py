@@ -169,7 +169,6 @@ def cpu_unload(enode, processid_list):
 def list_all_units(enode):
     '''
     List all system units
-
     :rtype: list
     :return: The list of all system units or None
     '''
@@ -186,9 +185,10 @@ def list_all_units(enode):
 def reload_service_units(enode, services_list):
     '''
     Reloads system service units
+    Parameters: List of strings
 
     :rtype: boolean
-    :return: "True" if succesful,"False" if failed
+    :return: "True" if succesful
     '''
 
     assert len(services_list) > 0, "services list is empty"
@@ -197,6 +197,8 @@ def reload_service_units(enode, services_list):
         cmd_restart = ("systemctl restart " + service)
         retval_restart = enode(cmd_restart, shell='bash')
         assert "Failed" not in retval_restart, "Services unable to restart"
+
+    return True
 
 
 def list_loaded_units(enode):
