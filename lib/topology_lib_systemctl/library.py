@@ -45,7 +45,7 @@ def check_failed_services(enode):
     if retval is "":
         return None
     else:
-        return retval.split()
+        return retval
 
 
 def get_memory_usage(enode):
