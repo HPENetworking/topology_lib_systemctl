@@ -28,7 +28,6 @@ from __future__ import print_function, division
 def check_failed_services(enode):
     '''
     List failed services
-
     :rtype: list
     :return: The list of failed services or None
     '''
