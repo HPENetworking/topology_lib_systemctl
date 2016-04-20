@@ -183,18 +183,20 @@ def list_all_units(enode):
         return retval.split()
 
 
-def reload_service_units(enode, service):
+def reload_service_units(enode, services_list):
     '''
     Reloads system service units
 
     :rtype: boolean
     :return: "True" if succesful,"False" if failed
     '''
-    cmd_restart = ("systemctl restart " + service)
 
-    retval_restart = enode(cmd_restart, shell='bash')
-    assert "Failed" not in retval_restart
-    print (retval_restart)
+    assert len(services_list) > 0, "services list is empty"
+
+    for service in services_list:
+        cmd_restart = ("systemctl restart " + service)
+        retval_restart = enode(cmd_restart, shell='bash')
+        assert "Failed" not in retval_restart, "Services unable to restart"
 
 
 def list_loaded_units(enode):
