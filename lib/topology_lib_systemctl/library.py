@@ -182,6 +182,8 @@ def list_all_units(enode):
     retval = enode(cmd, shell='bash')
     retval = retval.split('\n')
 
+    print(retval)
+
     ret_list = []
     for line in retval:
         if "failed" in line or "not-found" in line:
