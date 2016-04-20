@@ -178,14 +178,18 @@ def list_all_units(enode):
     :rtype: list
     :return: The list of all system units or None
     '''
-    cmd = ("systemctl list-units  -all | awk '{print $1 $2;}' | tail -n+2 " +
-        "head -n -7")
+    cmd = ("systemctl list-units  -all")
     retval = enode(cmd, shell='bash')
+    retval = retval.split('\n')
 
-    if retval is "":
-        return None
-    else:
-        return retval.split()
+    ret_list = []
+    for line in retval:
+        if "failed" or "not-found" not in line:
+            ret_list.append(line[0])
+        else:
+            ret_list.append(line[1])
+
+    return ret_list
 
 
 def reload_service_units(enode, services_list):
