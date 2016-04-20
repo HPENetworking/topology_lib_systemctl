@@ -185,12 +185,10 @@ def list_all_units(enode):
 
     ret_list = []
     for line in retval:
-        print("line: " + str(line))
         lineS = line.split(" ")
         if "systemctl list-units" not in line:
-            print("lines 0: " + str(lineS[0]))
-            print("lines 1: " + str(lineS[1]))
-            if re.search('a-zA-Z]+', lineS[0]):
+            if re.search('a-zA-Z]+', lineS[0]) and re.search('a-zA-Z]+',
+            lineS[1]):
                 ret_list.append(lineS[0])
             else:
                 ret_list.append(lineS[1])
