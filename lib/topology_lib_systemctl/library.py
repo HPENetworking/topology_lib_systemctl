@@ -185,11 +185,11 @@ def list_all_units(enode):
     print(retval)
     ret_list = []
     for line in retval:
-        line = line.split(" ")
+        line1 = line.split(" ")
         if "failed" in line or "not-found" in line:
-            ret_list.append(line[2])
+            ret_list.append(line1[2])
         else:
-            ret_list.append(line[0])
+            ret_list.append(line1[0])
     if len(ret_list) is 0:
         return None
     else:
