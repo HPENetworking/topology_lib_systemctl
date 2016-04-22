@@ -243,6 +243,57 @@ def list_loaded_units(enode):
     else:
         return ret_list
 
+
+
+def kill_daemons(enode, daemons_list):
+
+    """
+    This function kills daemons in the list passed as parameter
+
+    :daemons_list: This is the list of daemons that needs to be
+     killed.
+    """
+    assert len(daemons_list) > 0, "empty daemons list"
+    for daemon in daemons_list:
+        assert daemon, "null daemon name"
+        daemon_kill_command = "killall -9 "+daemon
+        output = enode(daemon_kill_command, shell="bash")
+        assert "no process killed" not in output, "Invalid daemon"
+
+
+def halt_daemons(enode, daemons_list):
+
+    """
+    This function halts daemons in the list passed as parameter
+
+    :daemons_list: This is the list of daemons that needs to be
+     halted.
+    """
+    assert len(daemons_list) > 0, "empty daemons list"
+    for daemon in daemons_list:
+        assert daemon, "null daemon name"
+        daemon_kill_command = "killall -STOP "+daemon
+        output = enode(daemon_kill_command, shell="bash")
+        assert "no process killed" not in output, "Invalid daemon"
+
+
+def continue_halted_daemons(enode, daemons_list):
+
+    """
+    This function resumes the halted daemons in the list passed
+    as parameter
+
+    :daemons_list: This is the list of halted daemons that needs to be
+     continued.
+    """
+    assert len(daemons_list) > 0, "empty daemons list"
+    for daemon in daemons_list:
+        assert daemon, "null daemon name"
+        daemon_kill_command = "killall -CONT "+daemon
+        output = enode(daemon_kill_command, shell="bash")
+        assert "no process killed" not in output, "Invalid daemon"
+
+
 __all__ = [
     'check_failed_services',
     'get_memory_usage',
@@ -252,5 +303,8 @@ __all__ = [
     'cpu_unload',
     'list_all_units',
     'reload_service_units',
-    'list_loaded_units'
+    'list_loaded_units',
+    'kill_daemons',
+    'halt_daemons',
+    'continue_halted_daemons'
 ]
