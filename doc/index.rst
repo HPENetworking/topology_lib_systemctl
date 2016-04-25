@@ -12,7 +12,7 @@ systemctl Communication Library for Topology
 
    .. image:: _static/images/logo.png
 
-Library for systemctl commands
+Library for system commands
 
 
 Documentation
