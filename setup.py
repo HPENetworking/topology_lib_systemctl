@@ -70,7 +70,7 @@ setup(
     author='Hewlett Packard Enterprise Development LP',
     author_email='arman.kapbasov@hpe.com',
     description=(
-        'Library for systemctl commands'
+        'Library for system commands'
     ),
     long_description=read('README.rst'),
     url='https://github.com/HPENetworking/topology_lib_systemctl/tree/master/doc',
