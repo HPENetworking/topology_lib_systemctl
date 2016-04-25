@@ -2,7 +2,7 @@
 systemctl Communication Library for Topology
 ============================================
 
-Library for systemctl commands
+Library for system commands
 
 
 Documentation
