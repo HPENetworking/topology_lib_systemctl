@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# system_control Communication Library for Topology documentation build
+# systemctl Communication Library for Topology documentation build
 # configuration file.
 # systemctl Communication Library for Topology documentation
 # build configuration file.

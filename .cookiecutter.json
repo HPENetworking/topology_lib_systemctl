@@ -1,10 +1,10 @@
 {
-    "library_name": "topology_lib_system_control",
+    "library_name": "topology_lib_systemctl",
     "author": "Hewlett Packard Enterprise Development LP",
     "email": "arman.kapbasov@hpe.com",
-    "repo_url": "https://github.com/HPENetworking/topology_lib_system_control",
-    "doc_url": "https://github.com/HPENetworking/topology_lib_system_control/tree/master/doc",
-    "project_name": "system_control Communication Library for Topology",
+    "repo_url": "https://github.com/HPENetworking/topology_lib_systemctl",
+    "doc_url": "https://github.com/HPENetworking/topology_lib_systemctl/tree/master/doc",
+    "project_name": "systemctl Communication Library for Topology",
     "short_description": "System control library",
     "year": "2016",
     "version": "0.1.0"
