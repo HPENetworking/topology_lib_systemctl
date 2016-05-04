@@ -73,9 +73,10 @@ setup(
         'Library for system commands'
     ),
     long_description=read('README.rst'),
-    url='https://github.com/HPENetworking/topology_lib_systemctl/tree/master/doc',
+    url=('https://github.com/HPENetworking/topology_lib_systemctl'
+         '/tree/master/doc'),
     keywords='topology_lib_systemctl',
-	
+
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

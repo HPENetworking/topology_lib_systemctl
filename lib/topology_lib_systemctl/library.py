@@ -21,7 +21,7 @@ topology_lib_systemctl communication library implementation.
 
 from __future__ import unicode_literals, absolute_import
 from __future__ import print_function, division
-import time, re
+import time
 
 # Add your library functions here.
 
@@ -33,8 +33,9 @@ def check_failed_services(enode):
     :rtype: list
     :return: The list of failed services or None
     '''
+
     cmd = ("systemctl list-units -all --state=failed | grep failed | " +
-        "awk '{print $2;}'")
+           "awk '{print $2;}'")
     output = enode(cmd, shell='bash')
     output = output.split('\n')
 
@@ -49,13 +50,14 @@ def check_failed_services(enode):
 
 
 def get_memory_usage(enode):
-
     """
     This function reads /proc/meminfo file for enode and parses it to return
-    MemTotal,MemFree and Cached values in a dictionary format.
+        MemTotal,MemFree and Cached values in a dictionary format.
+
     :param topology.platforms.base.BaseNode enode: Engine node to communicate
-     with.
+        with.
     """
+
     mem_info = {}
     output = enode("cat /proc/meminfo", shell="bash")
     assert 'MemTotal' in output
@@ -72,24 +74,27 @@ def get_memory_usage(enode):
 
 
 def memory_leak_check(enode, init_val, final_val, leakage_threshold):
-
     """
     This function calculates the memory usage for initial and final instances
-    and compares the difference with the leakage threshold to generate a
-    verdict to declare that there is a leakage or not.
+        and compares the difference with the leakage threshold to generate a
+        verdict to declare that there is a leakage or not.
+
     :param topology.platforms.base.BaseNode enode: Engine node to communicate
-     with.
-    :init_val is the memory usage dictionary value which is returned from
-     the routine get_memory_usage() at some time of instance, say before the
-     execution of some test.
-    :final_val is the memory usage dictionary value which is returned from
-     the routine get_memory_usage() at some other time of instance say after
-     the test of execution.
-    :leakage_threshold is the allowed memory usage difference from init to
-     final and beyond which it can be considered as memory leakage for the
-     result verdict.
-    :returns 1 for leakage detection and 0 for no leakage
+        with.
+    :param str init_val: is the memory usage dictionary value which is returned
+        from the routine get_memory_usage() at some time of instance, say
+        before the execution of some test.
+    :param str final_val: is the memory usage dictionary value which is
+        returned from the routine get_memory_usage() at some other time of
+        instance say after the test of execution.
+    :param int leakage_threshold: is the allowed memory usage difference from
+        init to final and beyond which it can be considered as memory leakage
+        for the result verdict.
+
+    :rtype: int
+    :return: 1 for leakage detection and 0 for no leakage
     """
+
     verdict = 0
     assert init_val
     assert final_val
@@ -106,13 +111,14 @@ def memory_leak_check(enode, init_val, final_val, leakage_threshold):
 
 
 def get_cpu_usage(enode):
-
     """
     This function reads /proc/stat file for enode and parses it to get
-    cpu usage and calculate relative usage rate relative to a small time.
+        cpu usage and calculate relative usage rate relative to a small time.
+
     :param topology.platforms.base.BaseNode enode: Engine node to communicate
-     with.
+        with.
     """
+
     last_worktime = 0
     last_idletime = 0
     output = enode("cat /proc/stat", shell="bash")
@@ -137,13 +143,14 @@ def get_cpu_usage(enode):
 
 
 def cpu_load(enode):
-
     """
     This function reads /proc/cpuinfo to get the CPU cores count and execute
-    a python script to create a load on all of the CPU cores.
+        a python script to create a load on all of the CPU cores.
+
     :param topology.platforms.base.BaseNode enode: Engine node to communicate
-     with.
+        with.
     """
+
     processid_list = []
     output = enode("cat /proc/cpuinfo | grep processor | wc -l", shell="bash")
     cores_count = int(output)
@@ -157,13 +164,14 @@ def cpu_load(enode):
 
 
 def cpu_unload(enode, processid_list):
-
     """
     This function kills the processes in the passed list to unload cpu cores
+
     :param topology.platforms.base.BaseNode enode: Engine node to communicate
-     with.
-    :processid_list contains list of process-ids to be killed
+        with.
+    :param list processid_list: contains list of process-ids to be killed
     """
+
     assert len(processid_list) > 0, "processes list is empty"
     for process_id in processid_list:
         command = "kill " + process_id
@@ -175,23 +183,28 @@ def cpu_unload(enode, processid_list):
 def list_all_units(enode):
     '''
     List all system units
+
+    :param topology.platforms.base.BaseNode enode: Engine node to communicate
+        with.
+
     :rtype: list
     :return: The list of all system units or None
     '''
+
     cmd = ("systemctl list-units  -all | tail -n+2 | head -n -7 | "
-    "awk '{print $1, $2;}'")
+           "awk '{print $1, $2;}'")
     retval = enode(cmd, shell='bash')
     retval = retval.split('\n')
 
     ret_list = []
     for line in retval:
-        lineS = line.split(" ")
+        lines = line.split(" ")
         if "systemctl list-units" not in line:
-            if any(c.isalpha() for c in lineS[0]) and any(c.isalpha()
-            for c in lineS[1]):
-                ret_list.append(lineS[0])
+            if (any(c.isalpha() for c in lines[0]) and
+                    any(c.isalpha() for c in lines[1])):
+                ret_list.append(lines[0])
             else:
-                ret_list.append(lineS[1])
+                ret_list.append(lines[1])
     if len(ret_list) is 0:
         return None
     else:
@@ -201,14 +214,16 @@ def list_all_units(enode):
 def reload_service_units(enode, services_list):
     '''
     Reloads system service units
-    Parameters: List of strings
+
+    :param topology.platforms.base.BaseNode enode: Engine node to communicate
+        with.
+    :param list services_list: contains list of services to reload
 
     :rtype: boolean
     :return: "True" if succesful
     '''
 
     assert len(services_list) > 0, "services list is empty"
-
     for service in services_list:
         cmd_restart = ("systemctl restart " + service)
         retval_restart = enode(cmd_restart, shell='bash')
@@ -221,38 +236,43 @@ def list_loaded_units(enode):
     '''
     List loaded system units
 
+    :param topology.platforms.base.BaseNode enode: Engine node to communicate
+        with.
+
     :rtype: list
     :return: The list of all loaded units or None
     '''
+
     cmd = ("systemctl list-units  --state=loaded | tail -n+2 | head -n -7 | "
-    "awk '{print $1, $2;}'")
+           "awk '{print $1, $2;}'")
     retval = enode(cmd, shell='bash')
     retval = retval.split('\n')
 
     ret_list = []
     for line in retval:
-        lineS = line.split(" ")
+        lines = line.split(" ")
         if "systemctl list-units" not in line:
-            if any(c.isalpha() for c in lineS[0]) and any(c.isalpha()
-            for c in lineS[1]):
-                ret_list.append(lineS[0])
+            if (any(c.isalpha() for c in lines[0]) and
+                    any(c.isalpha() for c in lines[1])):
+                ret_list.append(lines[0])
             else:
-                ret_list.append(lineS[1])
+                ret_list.append(lines[1])
     if len(ret_list) is 0:
         return None
     else:
         return ret_list
 
 
-
 def kill_daemons(enode, daemons_list):
-
     """
     This function kills daemons in the list passed as parameter
 
-    :daemons_list: This is the list of daemons that needs to be
-     killed.
+    :param topology.platforms.base.BaseNode enode: Engine node to communicate
+        with.
+    :param list daemons_list: This is the list of daemons that needs to be
+        killed.
     """
+
     assert len(daemons_list) > 0, "empty daemons list"
     for daemon in daemons_list:
         assert daemon, "null daemon name"
@@ -262,13 +282,15 @@ def kill_daemons(enode, daemons_list):
 
 
 def halt_daemons(enode, daemons_list):
-
     """
     This function halts daemons in the list passed as parameter
 
-    :daemons_list: This is the list of daemons that needs to be
-     halted.
+    :param topology.platforms.base.BaseNode enode: Engine node to communicate
+        with.
+    :param list daemons_list: This is the list of daemons that needs to be
+        halted.
     """
+
     assert len(daemons_list) > 0, "empty daemons list"
     for daemon in daemons_list:
         assert daemon, "null daemon name"
@@ -278,14 +300,16 @@ def halt_daemons(enode, daemons_list):
 
 
 def continue_halted_daemons(enode, daemons_list):
-
     """
     This function resumes the halted daemons in the list passed
-    as parameter
+        as parameter
 
-    :daemons_list: This is the list of halted daemons that needs to be
-     continued.
+    :param topology.platforms.base.BaseNode enode: Engine node to communicate
+        with.
+    :param list daemons_list: This is the list of halted daemons that needs
+        to be continued.
     """
+
     assert len(daemons_list) > 0, "empty daemons list"
     for daemon in daemons_list:
         assert daemon, "null daemon name"
