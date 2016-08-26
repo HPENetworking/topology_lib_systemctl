@@ -318,6 +318,20 @@ def continue_halted_daemons(enode, daemons_list):
         assert "no process killed" not in output, "Invalid daemon"
 
 
+def enable_node_as_ssh_client(enode):
+    """
+    This function enable the node as ssh client
+    by default it will be disabled with OS
+    Ubuntu version above 14.00
+    """
+    cmd = "sed -i 's/PermitRootLogin yes/# PermitRootLogin yes/'\
+            /etc/ssh/ssh_config"
+    enode(cmd, shell="bash")
+    cmd = "echo 'UserKnownHostsFile / dev / null'\
+            >> /etc/ssh/ssh_config"
+    enode(cmd, shell="bash")
+
+
 __all__ = [
     'check_failed_services',
     'get_memory_usage',
@@ -330,5 +344,6 @@ __all__ = [
     'list_loaded_units',
     'kill_daemons',
     'halt_daemons',
-    'continue_halted_daemons'
+    'continue_halted_daemons',
+    'enable_node_as_ssh_client'
 ]
